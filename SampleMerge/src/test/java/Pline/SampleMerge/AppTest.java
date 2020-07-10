@@ -1,38 +1,46 @@
 package Pline.SampleMerge;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
+public class AppTest {
+	
+	@InjectMocks
+	private App app;
+    
+	
+	@Before
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+	}
+	
+	
     /**
-     * Create the test case
-     *
-     * @param testName name of the test case
+     *  Test 1
      */
-    public AppTest( String testName )
+	@Test
+    public void testApp1()
     {
-        super( testName );
+    	String result = app.Calc("2", "1");
+        assertThat(result, is("Strings") );
     }
-
-    /**
-     * @return the suite of tests being tested
+	
+	/**
+     *  Test 2
      */
-    public static Test suite()
+	@Test
+    public void testApp2()
     {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+    	String result = app.Calc("", "1");
+        assertThat(result, is("Empty") );
     }
 }
